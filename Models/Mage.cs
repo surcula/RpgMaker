@@ -20,6 +20,9 @@ namespace RpgMaker.Models
         public int Intelligence { get { return _intelligence + 4; } private set { _intelligence = value; } }
         public int Sagesse { get { return _sagesse + 2; } private set { _sagesse = value; } }
 
+        ///<Summary>
+        ///Initialise le mage
+        ///</Summary>
         public void Initialize()
         {
             this.Force = new Random().Next(10, 21);
