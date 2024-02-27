@@ -133,3 +133,13 @@ j.AfficherMonstre();
 Console.WriteLine("Appuyer sur une touche pour continuer .......");
 Console.ReadKey();
 Console.Clear();
+
+#region Boxing UnBoxing
+
+//Monstre m = new Monstre(); Fonctionnera pas !!!!
+Monstre m = new Gobelin(); //Boxing
+Gobelin g1 = (Gobelin)m; //Unboxing
+((Gobelin)m).CoupDeMasse(); // ça évite de créer des objets un peu partout.
+
+
+#endregion
