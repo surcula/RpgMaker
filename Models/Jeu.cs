@@ -10,6 +10,11 @@ namespace RpgMaker.Models
     {
 
         public List<Monstre> listDeMonstres = new List<Monstre>();
+
+
+        ///<Summary>
+        ///Initialise la list des monstres
+        ///</Summary>
         public void RandomList() {
 
             for (int i = 0; i < 10; i++)
@@ -55,6 +60,33 @@ namespace RpgMaker.Models
             }
             
 
+        }
+
+        ///<Summary>
+        ///Affiche les monstres et leurs attaques
+        ///</Summary>
+        public void AfficherMonstre()
+        {
+            foreach (Monstre m in this.listDeMonstres)
+            {
+                m.ShowCharacterProfile();
+                switch (m)
+                {
+                    case Gobelin:
+                        ((Gobelin)m).CoupDeMasse();
+                        break;
+                    case Loup:
+                        ((Loup)m).Morsure();
+                        ((Loup)m).Hurlement();
+                        break;
+                    case Orc:
+                        ((Orc)m).CoupDeHache();
+                        ((Orc)m).CriDeGuerre();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

@@ -128,26 +128,7 @@ o.CriDeGuerre();
 
 Jeu j = new Jeu();
 j.RandomList();
-foreach ( Monstre m in j.listDeMonstres)
-{
-	m.ShowCharacterProfile();
-	switch (m)
-	{
-		case Gobelin:
-			((Gobelin)m).CoupDeMasse();
-			break;
-		case Loup:
-            ((Loup)m).Morsure();
-            ((Loup)m).Hurlement();
-            break;
-		case Orc:
-            ((Orc)m).CoupDeHache();
-            ((Orc)m).CriDeGuerre();
-            break;
-		default:
-			break;
-	}
-}
+j.AfficherMonstre();
 
 Console.WriteLine("Appuyer sur une touche pour continuer .......");
 Console.ReadKey();
