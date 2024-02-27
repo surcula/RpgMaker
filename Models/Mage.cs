@@ -8,8 +8,8 @@ namespace RpgMaker.Models
 {
     internal class Mage : Personnage
     {
-        public override int Intelligence { get { return base.Intelligence + 4; } }
-        public override int Sagesse { get { return base.Sagesse + 2; } }
+        public override int Intelligence { get { return _intelligence + 4; } }
+        public override int Sagesse { get { return _sagesse + 2; } }
 
         
     }

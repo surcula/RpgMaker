@@ -7,20 +7,16 @@ using System.Xml.Linq;
 
 namespace RpgMaker.Models
 {
-    internal class Monstre
+    internal class Monstre : Entite
     {
-        
-        private int _force;
-        private int _endurance;
-
-        public virtual int Force { get { return _force; } private set { _force = value; } }
-        public virtual int Endurance { get { return _endurance; } private set { _endurance = value; } }
+        public override int Force { get { return _force; } protected set { _force = value; } }
+        public override int Endurance { get { return _endurance; } protected set { _endurance = value;} }
 
 
         ///<Summary>
         ///Initialise le monstre
         ///</Summary>
-        public void Initialize()
+        public override void Initialize()
         {
             this.Force = new Random().Next(10, 21);
             this.Endurance = new Random().Next(10, 21);
@@ -29,9 +25,8 @@ namespace RpgMaker.Models
         ///<Summary>
         ///Affiche les informations du monstre
         ///</Summary>
-        public void ShowCharacterProfile()
+        public override void ShowCharacterProfile()
         {
-
             Console.WriteLine(this.GetType().Name);
             Console.WriteLine($"Force : {Force} ({_force})");
             Console.WriteLine($"Endu : {Endurance} ({_endurance})");

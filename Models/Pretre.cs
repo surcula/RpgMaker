@@ -9,8 +9,8 @@ namespace RpgMaker.Models
 {
     internal class Pretre : Personnage
     {
-        public override int Intelligence { get { return base.Intelligence + 2; } }
-        public override int Sagesse { get { return base.Sagesse + 4; } }
+        public override int Intelligence { get { return _intelligence + 2; } }
+        public override int Sagesse { get { return _sagesse + 4; } }
 
         
     }

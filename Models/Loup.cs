@@ -8,8 +8,8 @@ namespace RpgMaker.Models
 {
     internal class Loup : Monstre
     {
-        public override int Force { get { return base.Force + 2; } }
-        public override int Endurance { get { return base.Endurance + 1; } }
+        public override int Force { get { return _force + 2; } }
+        public override int Endurance { get { return _endurance + 1; } }
 
         public void Morsure()
         {

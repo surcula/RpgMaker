@@ -8,7 +8,7 @@ namespace RpgMaker.Models
 {
     internal class Gobelin : Monstre
     {
-        public override int Force { get { return base.Force - 1; } }
+        public override int Force { get { return _force - 1; } }
 
         public void CoupDeMasse()
         {

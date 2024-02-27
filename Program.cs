@@ -36,6 +36,12 @@ Faire une liste de 10 monstres de type aléatoire
 1 chance sur 2 de croiser un goblin
 1 chance sur 3 de croiser un loup
 1 chance sur 6 de croiser un orc
+--------------------------------------
+
+Créer une classe qui va regrouper les déclarations communes (méthodes et propriétés) à monstres et personnages.
+Modifier classe Monstre et Personnage pour qu'elles continuent à fonctionner 
+Réfléchir à ce qui peut devenir abstract.
+
  */
 
 #endregion

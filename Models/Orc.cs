@@ -8,8 +8,8 @@ namespace RpgMaker.Models
 {
     internal class Orc : Monstre
     {
-        public override int Force { get { return base.Force + 3; } }
-        public override int Endurance { get { return base.Endurance + 2; } }
+        public override int Force { get { return _force + 3; } }
+        public override int Endurance { get { return _endurance + 2; } }
 
 
         public void CoupDeHache()

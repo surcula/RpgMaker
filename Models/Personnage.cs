@@ -6,25 +6,23 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models
 {
-    class Personnage
+    class Personnage : Entite
     {
 
         private string _name;
-        private int _force;
-        private int _endurance;
-        private int _intelligence;
-        private int _sagesse;
+        protected int _intelligence;
+        protected int _sagesse;
 
         public string Name { get { return _name; } set { _name = value; } }
-        public  virtual int Force { get { return _force; } private set { _force = value; } }
-        public virtual int Endurance { get { return _endurance; } private set { _endurance = value; } }
-        public virtual int Intelligence { get { return _intelligence; } private set { _intelligence = value; } }
-        public virtual int Sagesse { get { return _sagesse; } private set { _sagesse = value; } }
+        public virtual int Intelligence { get { return _intelligence; } protected set { _intelligence = value; } }
+        public virtual int Sagesse { get { return _sagesse; } protected set { _sagesse = value; } }
+        public override int Force { get { return _force; } protected set { _force = value; } }
+        public override int Endurance { get { return _endurance; } protected set { _endurance = value; } }
 
         ///<Summary>
         ///Initialise le personnage
         ///</Summary>
-        public void Initialize()
+        public override void Initialize()
         {
             this.Force = new Random().Next(10, 21);
             this.Endurance = new Random().Next(10, 21);
@@ -37,7 +35,7 @@ namespace RpgMaker.Models
         ///<Summary>
         ///Affiche les informations du personnage
         ///</Summary>
-        public void ShowCharacterProfile()
+        public override void ShowCharacterProfile()
         {
 
             Console.WriteLine(this.GetType().Name);
