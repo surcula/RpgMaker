@@ -72,16 +72,21 @@ namespace RpgMaker.Models
                 m.ShowCharacterProfile();
                 switch (m)
                 {
-                    case Gobelin:
-                        ((Gobelin)m).CoupDeMasse();
+                    case Gobelin gob:
+                        gob.CoupDeMasse();
+                        //((Gobelin)m).CoupDeMasse();
                         break;
-                    case Loup:
-                        ((Loup)m).Morsure();
-                        ((Loup)m).Hurlement();
+                    case Loup loup:
+                        loup.Morsure();
+                        loup.Hurlement();
+                        //((Loup)m).Morsure();
+                        //((Loup)m).Hurlement();
                         break;
-                    case Orc:
-                        ((Orc)m).CoupDeHache();
-                        ((Orc)m).CriDeGuerre();
+                    case Orc orc:
+                        orc.CoupDeHache();
+                        orc.CriDeGuerre();
+                        //((Orc)m).CoupDeHache();
+                        //((Orc)m).CriDeGuerre();
                         break;
                     default:
                         break;
