@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RpgMaker.Models.Monstres;
+using RpgMaker.Models.Objets;
 
 namespace RpgMaker.Models
 {
@@ -10,7 +12,7 @@ namespace RpgMaker.Models
     {
 
         public List<Monstre> listDeMonstres = new List<Monstre>();
-
+        public List<Equipement> listDesEquipements = new List<Equipement>();
 
         ///<Summary>
         ///Initialise la list des monstres

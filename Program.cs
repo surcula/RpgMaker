@@ -42,11 +42,47 @@ Créer une classe qui va regrouper les déclarations communes (méthodes et prop
 Modifier classe Monstre et Personnage pour qu'elles continuent à fonctionner 
 Réfléchir à ce qui peut devenir abstract.
 
+--------------------------------------------
+
+Interface : 
+Implémenter un système d'équipement. Chaque équipement aura un prix en pièce d'or et un nom.
+
+3 catégories : Armes, Armures, Consommables
+
+Arme : dégat
+Armure : Réduction de dégat
+Consommable : Effet
+			=> Sous forme de méthode
+
+Qui peut avoir un équipement ? 
+			=> Les personnages pour l'utiliser
+			=> Les monstres pour le looter (gobelin et orc)
+						=> Les loups n'ont pas d'inventaire.
+
+Ajouter la notion de pièce d'or pour les personnages.
+
+Bonus générer un inventaire aléatoire pour les loots des monstres (entre 0 et 2 objets).
+
+-> Epée courte : 1d6
+-> Epée longue : 1d8
+-> Baton : 1d4
+
+-> potion de soi: rend 2d4pv
+
+-> armure de cuir : réduction 2 dégats
+-> armure de plaque : réduction 5 dégats
+
+
+
  */
 
 #endregion
 
 using RpgMaker.Models;
+using RpgMaker.Models.Characters;
+using RpgMaker.Models.Monstres;
+using RpgMaker.Models.Objets;
+using RpgMaker.Models.Tools;
 using System.Threading.Channels;
 
 
@@ -149,3 +185,66 @@ Gobelin g1 = (Gobelin)m; //Unboxing
 
 
 #endregion
+
+#region CreationDesObjets
+
+Arme arme = new Arme();
+arme.Name = "Epee Courte";
+arme.GoldQuantity = 15;
+arme.DeArme = new De();
+arme.DeArme.QuantiteDe = 1;
+arme.DeArme.TypeDe = 6;
+
+Arme arme2 = new Arme();
+arme2.Name = "Epee Longue";
+arme2.GoldQuantity = 20;
+arme2.DeArme = new De();
+arme2.DeArme.QuantiteDe = 1;
+arme2.DeArme.TypeDe = 8;
+
+Arme arme3 = new Arme();
+arme3.Name = "baton";
+arme3.GoldQuantity = 20;
+arme3.DeArme = new De();
+arme3.DeArme.QuantiteDe = 1;
+arme3.DeArme.TypeDe = 4;
+
+Armure armure = new Armure();
+armure.Name = "Armure de cuir";
+armure.GoldQuantity = 10;
+armure.NbReduction = 2;
+
+Armure armure2 = new Armure();
+armure2.Name = "Armure de cuir";
+armure2.GoldQuantity = 15;
+armure2.NbReduction = 5;
+
+Consommable consommable = new Consommable();
+consommable.Name = "Potion de vie";
+consommable.GoldQuantity = 5;
+
+j.listDesEquipements.Add(arme);
+j.listDesEquipements.Add(arme2);
+j.listDesEquipements.Add(arme3);
+j.listDesEquipements.Add(armure);
+j.listDesEquipements.Add(armure2);
+j.listDesEquipements.Add(consommable);
+
+#endregion
+
+Console.Clear();
+
+
+Gobelin gob = new Gobelin();
+gob.Initialize();
+gob.GoldQuantity = new Random().Next(1, 101);
+gob.AttribuerObjet(j.listDesEquipements);
+gob.Death();
+Console.ReadLine();
+
+Orc orc = new Orc();
+orc.Initialize();
+orc.GoldQuantity = new Random().Next(1, 101);
+orc.AttribuerObjet(j.listDesEquipements);
+orc.Death();
+Console.ReadLine();

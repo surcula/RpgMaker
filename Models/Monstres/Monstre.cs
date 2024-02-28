@@ -5,12 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace RpgMaker.Models
+namespace RpgMaker.Models.Monstres
 {
-    internal class Monstre : Entite
+    internal class Monstre : Entite, IDeath
     {
+
+
+
         public override int Force { get { return _force; } protected set { _force = value; } }
-        public override int Endurance { get { return _endurance; } protected set { _endurance = value;} }
+        public override int Endurance { get { return _endurance; } protected set { _endurance = value; } }
+
+        public virtual void Death()
+        {
+            Console.WriteLine($"Le monstre : {this.GetType().Name} est mort !");
+        }
 
 
         ///<Summary>
@@ -18,8 +26,8 @@ namespace RpgMaker.Models
         ///</Summary>
         public override void Initialize()
         {
-            this.Force = new Random().Next(10, 21);
-            this.Endurance = new Random().Next(10, 21);
+            Force = new Random().Next(10, 21);
+            Endurance = new Random().Next(10, 21);
         }
 
         ///<Summary>
@@ -27,7 +35,7 @@ namespace RpgMaker.Models
         ///</Summary>
         public override void ShowCharacterProfile()
         {
-            Console.WriteLine(this.GetType().Name);
+            Console.WriteLine(GetType().Name);
             Console.WriteLine($"Force : {Force} ({_force})");
             Console.WriteLine($"Endu : {Endurance} ({_endurance})");
         }
