@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Characters
 {
-    internal class Guerrier : Personnage
+    public class Guerrier : Personnage
     {
 
 
         public override int Force { get { return _force + 3; } }
-        public override int Endurance { get { return _endurance = +3; } }
+        public override int Endurance { get { return _endurance + 3; } }
 
 
     }

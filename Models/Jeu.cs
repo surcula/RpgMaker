@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RpgMaker.Models.Boutique;
 using RpgMaker.Models.Monstres;
 using RpgMaker.Models.Objets;
 
 namespace RpgMaker.Models
 {
-    internal class Jeu
+    public class Jeu
     {
 
         public List<Monstre> listDeMonstres = new List<Monstre>();
@@ -28,32 +29,26 @@ namespace RpgMaker.Models
                 {
                     case 1:
                         monstre = new Gobelin();
-                        monstre.Initialize();
                         this.listDeMonstres.Add(monstre);
                         break;
                     case 2:
                         monstre = new Gobelin();
-                        monstre.Initialize();
                         this.listDeMonstres.Add(monstre);
                         break;
                     case 3:
                         monstre = new Gobelin();
-                        monstre.Initialize();
                         this.listDeMonstres.Add(monstre);
                         break;
                     case 4:
                         monstre = new Loup();
-                        monstre.Initialize();
                         this.listDeMonstres.Add(monstre);
                         break;
                     case 5:
                         monstre = new Loup();
-                        monstre.Initialize();
                         this.listDeMonstres.Add(monstre);
                         break;
                     case 6:
                         monstre = new Orc();
-                        monstre.Initialize();
                         this.listDeMonstres.Add(monstre);
                         break;
                     default:
@@ -94,6 +89,13 @@ namespace RpgMaker.Models
                         break;
                 }
             }
+        }
+        /// <summary>
+        /// La boutique pour acheter ou vendre les objets
+        /// </summary>
+        public void EntrerBoutique()
+        {
+            Shop.MenuCommand(listDesEquipements);
         }
     }
 }

@@ -11,6 +11,12 @@ namespace RpgMaker.Models.Tools
         private int _quantiteDe;
         private int _typeDe;
 
+        public De(int quantiteDe, int typeDe)
+        {
+            QuantiteDe = quantiteDe;
+            TypeDe = typeDe;
+        }
+
         public int QuantiteDe { get; set; }
         public int TypeDe { get; set; }
 

@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Objets
 {
-    internal class Consommable : Equipement
+    public class Consommable : Equipement
     {
+        public Consommable(string name, int goldQuantity) : base(name, goldQuantity)
+        {
+
+        }
+
         public void Effet() {
             int total = 0;
             for (int i = 0; i < 2; i++)

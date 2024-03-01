@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Objets
 {
-    internal interface IInventaire
+    public interface IInventaire
     {
         List<Equipement> inventaire { get; set; }
     }

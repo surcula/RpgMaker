@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Monstres
 {
-    internal class Loup : Monstre
+    public class Loup : Monstre
     {
         public override int Force { get { return _force + 2; } }
         public override int Endurance { get { return _endurance + 1; } }

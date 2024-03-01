@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Objets
 {
-    internal class Arme : Equipement
+    public class Arme : Equipement
     {
+        public Arme(string name, int or, De deArme)
+        :base(name,or)
+        {
+            DeArme = deArme;
+        }
+
         public De DeArme { get; set; }
         public void Attaque() {
 

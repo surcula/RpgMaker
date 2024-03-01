@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models
 {
-    internal abstract class Entite
+    public abstract class Entite
     {
         protected int _force;
         protected int _endurance;
+        protected int pv;
         public abstract int Force { get; protected set; }
         public abstract int Endurance { get; protected set; }
+        protected int Pv { get => pv; set => pv = value; }
 
         ///<Summary>
         ///Initialise le personnage
         ///</Summary>
-        public abstract void Initialize();
+        protected abstract void Initialize();
 
         ///<Summary>
         ///Affiche les informations du personnage

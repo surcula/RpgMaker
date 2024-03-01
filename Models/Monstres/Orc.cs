@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Monstres
 {
-    internal class Orc : Monstre, IInventaire, IOr, IDeath
+    public class Orc : Monstre, IInventaire, IOr, IDeath
     {
 
         protected int _goldQuantity;

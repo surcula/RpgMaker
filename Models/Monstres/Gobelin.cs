@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace RpgMaker.Models.Monstres
 {
-    internal class Gobelin : Monstre, IInventaire, IOr
+    public class Gobelin : Monstre, IInventaire, IOr
 
     {
         protected int _goldQuantity;
@@ -56,7 +56,6 @@ namespace RpgMaker.Models.Monstres
                     compteur++;
                 }
             }
-
         }
     }
 }

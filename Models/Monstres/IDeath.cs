@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Monstres
 {
-    internal interface IDeath
+    public interface IDeath
     {
         public void Death();
     }
