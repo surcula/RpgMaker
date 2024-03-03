@@ -19,6 +19,10 @@ namespace RpgMaker.Models.Game
         private static List<Armure> armures { get; set; } = new List<Armure> { };
         private static List<Consommable> consommables { get; set; } = new List<Consommable>();
 
+        /// <summary>
+        /// Initialise les listes pour l'utilisation en combat
+        /// </summary>
+        /// <param name="personnage"></param>
         private static void InitLists(Personnage personnage)
         {
             foreach (Equipement item in personnage.inventaire)
@@ -40,6 +44,11 @@ namespace RpgMaker.Models.Game
             }
         }
 
+        /// <summary>
+        /// Init du combat
+        /// </summary>
+        /// <param name="personnage"></param>
+        /// <param name="listMonstres"></param>
         public static void InitBatttle(Personnage personnage, List<Monstre> listMonstres)
         {
             InitLists(personnage);
@@ -49,6 +58,10 @@ namespace RpgMaker.Models.Game
 
         }
 
+        /// <summary>
+        /// Choix de l'arme pour le combat
+        /// </summary>
+        /// <param name="personnage"></param>
         private static void ChoiceArme(Personnage personnage)
         {
             int choiceUser = 0;
@@ -68,7 +81,10 @@ namespace RpgMaker.Models.Game
             ArmePlayer = armes[choiceUser];
 
         }
-
+        /// <summary>
+        /// Choix de l'armure pour le combat
+        /// </summary>
+        /// <param name="personnage"></param>
         private static void ChoiceArmure(Personnage personnage)
         {
             int choiceUser = 0;
@@ -89,32 +105,46 @@ namespace RpgMaker.Models.Game
             ArmurePlayer = armures[choiceUser];
 
         }
+
+        /// <summary>
+        /// Le combat
+        /// </summary>
+        /// <param name="personnage"></param>
+        /// <param name="listMonstres"></param>
         private static void BattleHorde(Personnage personnage, List<Monstre> listMonstres)
         {
-            for (int i = 0; i < listMonstres.Count(); i++)
+            int compteur = 0;
+
+            while (personnage.Health > 0 && compteur < listMonstres.Count())
             {
-                Console.WriteLine($"Le combat : {i} débute ...... Il vous reste {personnage.Health} point de vie");
+                Console.WriteLine($"Le combat : {compteur} débute ...... Il vous reste {personnage.Health} point de vie");
                 Console.ReadKey();
 
-                while (listMonstres[i].Health > 0 && personnage.Health > 0)
+                while (listMonstres[compteur].Health > 0 && personnage.Health > 0)
                 {
+                    int degatMonstre = listMonstres[compteur].arme.Lancer() + Carac.ModCarac(listMonstres[compteur].Strength);
                     Console.WriteLine($" Point de vie du personnage({personnage.Health})");
-                    Console.WriteLine($" Point de vie du monstre({listMonstres[i].Health})");
-                    listMonstres[i].Health -= (ArmePlayer.DeArme.Lancer() + Carac.ModCarac(personnage.Strength));
-                    Console.WriteLine($"Le monstre n'a plus que : {listMonstres[i].Health}PV");
-                    personnage.Health -= ((listMonstres[i].arme.Lancer() + Carac.ModCarac(listMonstres[i].Strength)) - ArmurePlayer.NbReduction);
+                    Console.WriteLine($" Point de vie du monstre({listMonstres[compteur].Health})");
+                    listMonstres[compteur].Health -= (ArmePlayer.DeArme.Lancer() + Carac.ModCarac(personnage.Strength));
+                    Console.WriteLine($"Le monstre n'a plus que : {listMonstres[compteur].Health}PV");
+                    if(listMonstres[compteur].Health > 0)
+                    {
+                        if(degatMonstre > ArmurePlayer.NbReduction)
+                        {
+                            personnage.Health -= degatMonstre - ArmurePlayer.NbReduction;
+                        }                        
+                    }
                     Console.WriteLine($"Le Personnage n'a plus que : {personnage.Health}PV");
-
-                }
-                if(personnage.Health <= 0)
-                {
-                    Console.WriteLine("Vous êtes Mort");
-                }
-                
+                }                
+                compteur++;
             }
             if (personnage.Health > 0)
             {
                 Console.WriteLine("Vous avez gagné");
+            }
+            else 
+            {
+                Console.WriteLine("Vous êtes mort !");
             }
         }
     }

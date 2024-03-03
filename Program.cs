@@ -147,10 +147,6 @@ Changer le système de création de personnage :
 #endregion
 
 using RpgMaker.Models;
-using RpgMaker.Models.Characters;
-using RpgMaker.Models.Monstres;
-using RpgMaker.Models.Objets;
-using RpgMaker.Models.Tools;
 
 
 Jeu j = new Jeu();
