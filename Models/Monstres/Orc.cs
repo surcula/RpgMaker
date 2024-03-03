@@ -1,4 +1,5 @@
 ﻿using RpgMaker.Models.Objets;
+using RpgMaker.Models.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,21 @@ namespace RpgMaker.Models.Monstres
         protected int _goldQuantity;
         public int GoldQuantity { get { return _goldQuantity; } set { _goldQuantity = value; } }
         public List<Equipement> inventaire { get; set; } = new List<Equipement>();
+        public override int Strength { get { return base.Strength + 3; } }
+        public override int Endurance { get { return base.Endurance + 2; } }
+        public override De arme { get => base.arme; set => base.arme = value; }
 
+        public Orc()
+        {
+            Initialize();
+        }
 
-        public override int Force { get { return _force + 3; } }
-        public override int Endurance { get { return _endurance + 2; } }
-
+        protected override void Initialize()
+        {
+            base.Initialize();
+            arme = new De(1,8);
+            this.GoldQuantity = new Random().Next(0, 10);
+        }
 
         public void CoupDeHache()
         {

@@ -1,4 +1,5 @@
-﻿using RpgMaker.Models.Tools;
+﻿using RpgMaker.Models.Objets;
+using RpgMaker.Models.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,10 @@ namespace RpgMaker.Models.Monstres
     {
 
 
-        public override int Force { get { return _force; } protected set { _force = value; } }
-        public override int Endurance { get { return _endurance; } protected set { _endurance = value; } }
-
+        public override int Strength { get { return _strength; } set { _strength = value; } }
+        public override int Endurance { get { return _endurance; } set { _endurance = value; } }
+        public override int Health { get; set; }
+        public virtual De arme {  get; set; }
 
         public Monstre() 
         {
@@ -35,9 +37,9 @@ namespace RpgMaker.Models.Monstres
         ///</Summary>
         protected override void Initialize()
         {
-            Force = new Random().Next(10, 21);
+            Strength = new Random().Next(10, 21);
             Endurance = new Random().Next(10, 21);
-            Pv = 10 + Carac.ModCarac(Endurance);
+            Health = 10 + Carac.ModCarac(Endurance);
         }
 
         ///<Summary>
@@ -46,8 +48,12 @@ namespace RpgMaker.Models.Monstres
         public override void ShowCharacterProfile()
         {
             Console.WriteLine(GetType().Name);
-            Console.WriteLine($"Force : {Force} ({_force})");
+            Console.WriteLine($"Force : {Strength} ({_strength})");
             Console.WriteLine($"Endu : {Endurance} ({_endurance})");
+            if(this is IOr monstreOr)
+            {
+                Console.WriteLine($"Le monstre possède : {monstreOr.GoldQuantity} Po");
+            }
         }
     }
 }

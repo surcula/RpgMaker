@@ -10,9 +10,15 @@ namespace RpgMaker.Models.Characters
     {
 
 
-        public override int Force { get { return _force + 3; } }
-        public override int Endurance { get { return _endurance + 3; } }
+        public override int Strength { get { return base.Strength + 3; } set { base.Strength = value; } }
+        public override int Endurance { get { return base.Endurance + 3; } set { base.Endurance = value; } }
 
+
+        public Guerrier()
+        {
+            Console.WriteLine("Veuillez entrer un nom.");
+            Name = Console.ReadLine();
+        }
 
     }
 }

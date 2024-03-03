@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RpgMaker.Models.Tools
 {
-    internal class De
+    public class De
     {
         private int _quantiteDe;
         private int _typeDe;

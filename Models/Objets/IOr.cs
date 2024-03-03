@@ -8,6 +8,9 @@ namespace RpgMaker.Models.Objets
 {
     internal interface IOr
     {
+        /// <summary>
+        /// La quantité d'or
+        /// </summary>
         int GoldQuantity {  get; set; }
 
     }

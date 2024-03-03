@@ -1,4 +1,5 @@
 ﻿using RpgMaker.Models.Objets;
+using RpgMaker.Models.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,29 @@ namespace RpgMaker.Models.Monstres
     public class Gobelin : Monstre, IInventaire, IOr
 
     {
+        
         protected int _goldQuantity;
         public List<Equipement> inventaire { get; set; } = new List<Equipement>();
+        public override De arme { get => base.arme; set => base.arme = value; }
 
+        /// <summary>
+        /// L'or que le gobelin va donner a sa mort
+        /// </summary>
         public int GoldQuantity { get { return _goldQuantity; } set { _goldQuantity = value; } }
-        public override int Force { get { return _force - 1; } }
+        public override int Strength { get { return base.Strength - 1; } }
+        public Gobelin()
+        {
+            Initialize();
+        }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            arme = new De(1,4);
+            this.GoldQuantity = new Random().Next(0, 10);
+        }
+
+
 
         public void CoupDeMasse()
         {

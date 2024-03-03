@@ -8,12 +8,23 @@ namespace RpgMaker.Models
 {
     public abstract class Entite
     {
-        protected int _force;
+        protected int _strength;
         protected int _endurance;
-        protected int pv;
-        public abstract int Force { get; protected set; }
-        public abstract int Endurance { get; protected set; }
-        protected int Pv { get => pv; set => pv = value; }
+        protected int _health;
+
+        /// <summary>
+        /// La force de l'entité
+        /// </summary>
+        public abstract int Strength { get; set; }
+
+        /// <summary>
+        /// L'endurance de l'entité
+        /// </summary>
+        public abstract int Endurance { get; set; }
+        /// <summary>
+        /// La santé de l'entité
+        /// </summary>
+        public abstract int Health { get ; set ; }
 
         ///<Summary>
         ///Initialise le personnage

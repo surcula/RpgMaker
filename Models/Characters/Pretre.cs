@@ -9,9 +9,15 @@ namespace RpgMaker.Models.Characters
 {
     public class Pretre : Personnage
     {
-        public override int Intelligence { get { return _intelligence + 2; } }
-        public override int Sagesse { get { return _sagesse + 4; } }
+        public override int Intelligence { get { return base.Intelligence + 2; } }
+        public override int Wisdom { get { return base.Wisdom + 4; } }
 
+        public Pretre()
+        {
+            Console.WriteLine("Veuillez entrer un nom.");
+            Name = Console.ReadLine();
+        }
 
+       
     }
 }
