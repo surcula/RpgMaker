@@ -149,10 +149,5 @@ Changer le système de création de personnage :
 using RpgMaker.Models;
 
 
-Jeu j = new Jeu();
-
-j.afficherPersonnage();
-j.RandomListMonstre();
-j.EntrerBoutique();
-j.Combat();          
+Jeu j = new Jeu();       
 Console.ReadLine();

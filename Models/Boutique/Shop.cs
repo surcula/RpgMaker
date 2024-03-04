@@ -55,12 +55,12 @@ namespace RpgMaker.Models.Boutique
         /// </summary>
         private static void Vendre(Personnage personnage)
         {
-            
+
             int choixUser = 1;
 
             if (personnage.inventaire.Count() != 0)
             {
-                while (choixUser < 0 || choixUser < personnage.inventaire.Count+1)
+                while (choixUser > 0 || choixUser < personnage.inventaire.Count)
                 {
                     Console.WriteLine($"Veuillez choisir un objet à vendre.");
                     Console.WriteLine("0 : pour quitter.");
@@ -70,14 +70,16 @@ namespace RpgMaker.Models.Boutique
                     }
                     choixUser = int.Parse(Console.ReadLine());
 
+                    if (choixUser != 0)
+                    {
+                        Console.WriteLine($"Voici votre or : {(personnage.inventaire[choixUser - 1].GoldQuantity) / 2}");
+                        personnage.GoldQuantity += (personnage.inventaire[choixUser - 1].GoldQuantity) / 2;
+                        personnage.inventaire.Remove(personnage.inventaire[choixUser - 1]);
+
+                    }
                 }
+
                 
-                if (choixUser != 0)
-                {
-                    Console.WriteLine($"Voici votre or : {(personnage.inventaire[choixUser - 1].GoldQuantity) / 2}");
-                    personnage.GoldQuantity += (personnage.inventaire[choixUser - 1].GoldQuantity) / 2;
-                    personnage.inventaire.Remove(personnage.inventaire[choixUser - 1]);
-                }
             }
             else
             {
@@ -95,32 +97,38 @@ namespace RpgMaker.Models.Boutique
         {
             Console.Clear();
             int choixUser = 0;
-
-            if (listDesEquipements.Count() != 0)
+            do
             {
-                Console.WriteLine($"Veuillez choisir un objet à acheter. vous avez actuellement {personnage.GoldQuantity}Po");
-                Console.WriteLine("0 : pour quitter.");
-                for (int i = 0; i < listDesEquipements.Count; i++)
+                if (listDesEquipements.Count() != 0)
                 {
 
-                    Console.WriteLine($"{i + 1}:{listDesEquipements[i].Name}({listDesEquipements[i].GoldQuantity}Po)");
+                    Console.Clear();
+                    Console.WriteLine($"Veuillez choisir un objet à acheter. vous avez actuellement {personnage.GoldQuantity}Po");
+                    Console.WriteLine("0 : pour quitter.");
+                    for (int i = 0; i < listDesEquipements.Count; i++)
+                    {
 
-                }
-            }
-            choixUser = int.Parse(Console.ReadLine());
+                        Console.WriteLine($"{i + 1}:{listDesEquipements[i].Name}({listDesEquipements[i].GoldQuantity}Po)");
 
-            if (choixUser != 0)
-            {
-                if (personnage.GoldQuantity > listDesEquipements[choixUser - 1].GoldQuantity)
-                {
-                    personnage.inventaire.Add(listDesEquipements[choixUser - 1]);
-                    personnage.GoldQuantity -= listDesEquipements[choixUser - 1].GoldQuantity;
+                    }
                 }
-                else
+                choixUser = int.Parse(Console.ReadLine());
+
+                if (choixUser != 0)
                 {
-                    Console.WriteLine("Tu n'as pas assez d'or pour cet objet.");
+                    if (personnage.GoldQuantity > listDesEquipements[choixUser - 1].GoldQuantity)
+                    {
+                        personnage.inventaire.Add(listDesEquipements[choixUser - 1]);
+                        personnage.GoldQuantity -= listDesEquipements[choixUser - 1].GoldQuantity;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Tu n'as pas assez d'or pour cet objet.");
+                    }
                 }
-            }
+
+            } while (choixUser != 0);
+            
             Console.WriteLine("Au revoir aventurier !");
 
         }

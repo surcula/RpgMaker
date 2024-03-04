@@ -24,6 +24,10 @@ namespace RpgMaker.Models
         { 
             InitEquipement();
             InitPersonnage();
+            afficherPersonnage();
+            EntrerBoutique();
+            RandomListMonstre();
+            Combat();
         }
 
         private void InitPersonnage()
@@ -85,30 +89,33 @@ namespace RpgMaker.Models
                 switch (random)
                 {
                     case 1:
-                        monstre = new Gobelin();
-                        this.listDeMonstres.Add(monstre);
-                        break;
                     case 2:
-                        monstre = new Gobelin();
-                        this.listDeMonstres.Add(monstre);
-                        break;
                     case 3:
                         monstre = new Gobelin();
+                        int randomNbItem = new Random().Next(0, 3);
+
+                        for (int j = 0; j < randomNbItem; j++)
+                        {
+                            int randomLoot = new Random().Next(0, listDesEquipements.Count());
+                            ((Gobelin)monstre).inventaire.Add(listDesEquipements[randomLoot]);
+                        }
                         this.listDeMonstres.Add(monstre);
                         break;
-                    case 4:
-                        monstre = new Loup();
-                        this.listDeMonstres.Add(monstre);
-                        break;
+                    case 4:                        
                     case 5:
                         monstre = new Loup();
                         this.listDeMonstres.Add(monstre);
                         break;
                     case 6:
                         monstre = new Orc();
-                        this.listDeMonstres.Add(monstre);
-                        Orc orc = new Orc();
-                        
+                        int randomNbItem2 = new Random().Next(0, 3);
+
+                        for (int j = 0; j < randomNbItem2; j++)
+                        {
+                            int randomLoot = new Random().Next(0, listDesEquipements.Count());
+                            ((Orc)monstre).inventaire.Add(listDesEquipements[randomLoot]);
+                        }
+                        this.listDeMonstres.Add(monstre);                                              
                         break;
                     default:
                         break;
@@ -166,7 +173,9 @@ namespace RpgMaker.Models
 
         public void Combat()
         {
-            Battle.InitBatttle(personnage,listDeMonstres);
+            Battle.InitBatttle(personnage,listDeMonstres, listDesEquipements);
         }
+
+       
     }
 }

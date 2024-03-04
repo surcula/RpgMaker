@@ -25,9 +25,9 @@ namespace RpgMaker.Models.Tools
         {
             int total = 0;
 
-            for (int i = 0; i < this.QuantiteDe; i++)
+            for (int i = 0; i < QuantiteDe; i++)
             {
-                total += new Random().Next(1,this.TypeDe);
+                total += new Random().Next(1,TypeDe);
             }
             return total;
         }

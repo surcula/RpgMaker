@@ -1,4 +1,5 @@
-﻿using RpgMaker.Models.Characters;
+﻿using RpgMaker.Models.Boutique;
+using RpgMaker.Models.Characters;
 using RpgMaker.Models.Monstres;
 using RpgMaker.Models.Objets;
 using RpgMaker.Models.Tools;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +27,7 @@ namespace RpgMaker.Models.Game
         /// <param name="personnage"></param>
         private static void InitLists(Personnage personnage)
         {
+            
             foreach (Equipement item in personnage.inventaire)
             {
                 switch (item)
@@ -49,12 +52,12 @@ namespace RpgMaker.Models.Game
         /// </summary>
         /// <param name="personnage"></param>
         /// <param name="listMonstres"></param>
-        public static void InitBatttle(Personnage personnage, List<Monstre> listMonstres)
+        public static void InitBatttle(Personnage personnage, List<Monstre> listMonstres, List<Equipement> listDesEquipements)
         {
             InitLists(personnage);
             ChoiceArme(personnage);
             ChoiceArmure(personnage);
-            BattleHorde(personnage, listMonstres);
+            BattleHorde(personnage, listMonstres,listDesEquipements);
 
         }
 
@@ -65,7 +68,7 @@ namespace RpgMaker.Models.Game
         private static void ChoiceArme(Personnage personnage)
         {
             int choiceUser = 0;
-
+            Console.Clear();
             Console.WriteLine("Veuillez choisir une arme à utiliser.");
             for (int i = 0; i < armes.Count(); i++)
             {
@@ -89,7 +92,7 @@ namespace RpgMaker.Models.Game
         {
             int choiceUser = 0;
 
-
+            Console.Clear();
             Console.WriteLine("Veuillez choisir une armure à utiliser.");
             for (int i = 0; i < armes.Count(); i++)
             {
@@ -111,13 +114,14 @@ namespace RpgMaker.Models.Game
         /// </summary>
         /// <param name="personnage"></param>
         /// <param name="listMonstres"></param>
-        private static void BattleHorde(Personnage personnage, List<Monstre> listMonstres)
+        private static void BattleHorde(Personnage personnage, List<Monstre> listMonstres, List<Equipement> listDesEquipements)
         {
             int compteur = 0;
 
             while (personnage.Health > 0 && compteur < listMonstres.Count())
             {
-                Console.WriteLine($"Le combat : {compteur} débute ...... Il vous reste {personnage.Health} point de vie");
+                Console.Clear() ;
+                Console.WriteLine($"Le combat : {compteur + 1} débute ...... Il vous reste {personnage.Health} point de vie");
                 Console.ReadKey();
 
                 while (listMonstres[compteur].Health > 0 && personnage.Health > 0)
@@ -135,8 +139,55 @@ namespace RpgMaker.Models.Game
                         }                        
                     }
                     Console.WriteLine($"Le Personnage n'a plus que : {personnage.Health}PV");
-                }                
+                }
+                if (listMonstres[compteur].Health <= 0)
+                {
+                    Console.WriteLine($"Le monstre : {listMonstres[compteur].GetType().Name} est mort !");
+                    switch (listMonstres[compteur])
+                    {
+                        case Gobelin gob:
+                            if(gob.inventaire.Count() > 0)
+                            {
+                                foreach (Equipement item in gob.inventaire)
+                                {
+                                    Console.WriteLine($"Vous avez gagné un(e) : {item.Name}");
+                                    personnage.inventaire.Add(item);
+                                    
+                                }
+                            }else
+                            {
+                                Console.WriteLine("Désolé le monstre n'a pas de loot.");
+                            }
+                            Console.WriteLine($"Vous avea gagné {gob.GoldQuantity} Po.");
+                            personnage.GoldQuantity += gob.GoldQuantity;
+                            break;
+                        case Orc orc:
+                            if (orc.inventaire.Count() > 0)
+                            {
+                                foreach (Equipement item in orc.inventaire)
+                                {
+                                    Console.WriteLine($"Vous avez gagné un(e) : {item.Name}");
+                                    personnage.inventaire.Add(item);
+                                    
+
+                                }
+                            }else
+                            {
+                                Console.WriteLine("Désolé le monstre n'a pas de loot.");
+                            }
+                            Console.WriteLine($"Vous avea gagné {orc.GoldQuantity} Po.");
+                            personnage.GoldQuantity += orc.GoldQuantity;
+                            break;
+                        default:
+                            Console.WriteLine("Désolé le monstre n'a pas de loot.");
+                            break;
+                    }
+                    
+                }
+                
+                Console.ReadKey();
                 compteur++;
+                Shop.MenuCommand(listDesEquipements, personnage);
             }
             if (personnage.Health > 0)
             {

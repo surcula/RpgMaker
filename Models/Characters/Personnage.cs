@@ -38,7 +38,9 @@ namespace RpgMaker.Models.Characters
         /// La sagesse du personnage
         /// </summary>
         public virtual int Wisdom { get { return _wisdom; } set { _wisdom = value; } }
+
         public override int Strength { get { return _strength; } set { _strength = value; } }
+        
         public override int Endurance { get { return _endurance; } set { _endurance = value; } }
 
         public List<Equipement> inventaire { get; set; } = new List<Equipement>();
